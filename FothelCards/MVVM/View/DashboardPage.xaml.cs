@@ -1,5 +1,8 @@
-﻿using System.Text;
-using FothelCards.MVVM.View;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FothelCards
+namespace FothelCards.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Lógica de interacción para DashboardPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DashboardPage : Page
     {
-        public MainWindow()
+        public DashboardPage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new LoginPage());
         }
     }
 }

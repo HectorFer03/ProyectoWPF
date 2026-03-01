@@ -1,0 +1,64 @@
+﻿<Page x:Class="FothelCards.MVVM.View.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:vm="clr-namespace:FothelCards.MVVM.ViewModel"
+      Title="DashboardPage">
+
+    <Page.DataContext>
+        <vm:DashboardViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="#ECEFF4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="#3B4252">
+            <TextBlock Text="MENU" Foreground="White" FontSize="20" FontWeight="Bold" Margin="20"/>
+            <Button Content="Salir" Command="{Binding SalirCommand}" Margin="20,10" Padding="10" Background="#BF616A" Foreground="White"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                <TextBlock Text="Filas:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox Text="{Binding Filas}" Width="40" Margin="0,0,20,0"/>
+                <TextBlock Text="Columnas:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox Text="{Binding Columnas}" Width="40" Margin="0,0,20,0"/>
+                <Button Content="Generar Estanterías" Command="{Binding GenerarCommand}" Padding="10" Background="#88C0D0"/>
+            </StackPanel>
+
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding ListaProductos}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="{Binding Filas}" Columns="{Binding Columnas}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Margin="5" Command="{Binding DataContext.CambiarEstadoCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding}">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#A3BE8C"/>
+                                    <Setter Property="Content" Value="{Binding Nombre}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Estado}" Value="Agotado">
+                                            <Setter Property="Background" Value="#BF616A"/>
+                                            <Setter Property="Content" Value="AGOTADO"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+</Page>
