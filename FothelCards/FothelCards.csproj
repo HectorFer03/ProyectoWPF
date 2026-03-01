@@ -12,4 +12,8 @@
     <PackageReference Include="MySql.Data" Version="9.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MVVM\Util\" />
+  </ItemGroup>
+
 </Project>

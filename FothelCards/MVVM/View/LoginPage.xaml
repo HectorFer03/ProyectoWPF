@@ -18,9 +18,10 @@
             <TextBox Text="{Binding Username}" Margin="0,0,0,15" Padding="5"/>
 
             <TextBlock Text="Contraseña:" Foreground="White" Margin="0,0,0,5"/>
-            <TextBox Text="{Binding Password}" Margin="0,0,0,20" Padding="5"/>
-
+            <PasswordBox x:Name="TxtPassword" Margin="0,0,0,20" Padding="5"/>
+                
             <Button Content="Iniciar Sesión" Command="{Binding LoginCommand}" Background="#A3BE8C" Foreground="Black" Padding="8" Margin="0,0,0,10"/>
+            <Button Content="Registrarse" Command="{Binding IrRegistroCommand}" Background="#81A1C1" Foreground="White" Padding="8" Margin="0,0,0,10"/>
             <Button Content="Modo Invitado" Command="{Binding BypassCommand}" Background="#4C566A" Foreground="White" Padding="8"/>
         </StackPanel>
     </Grid>
