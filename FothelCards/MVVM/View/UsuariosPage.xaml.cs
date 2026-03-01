@@ -18,7 +18,7 @@ namespace FothelCards.MVVM.View
     /// <summary>
     /// Lógica de interacción para UsuariosPage.xaml
     /// </summary>
-    public partial class UsuariosPage : Page
+    public partial class UsuariosPage : UserControl
     {
         public UsuariosPage()
         {

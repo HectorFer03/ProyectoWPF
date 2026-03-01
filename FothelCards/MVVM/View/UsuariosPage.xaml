@@ -1,12 +1,11 @@
-﻿<Page x:Class="FothelCards.MVVM.View.UsuariosPage"
+﻿<UserControl x:Class="FothelCards.MVVM.View.UsuariosPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:vm="clr-namespace:FothelCards.MVVM.ViewModel"
-      Title="UsuariosPage">
+      xmlns:vm="clr-namespace:FothelCards.MVVM.ViewModel">
 
-    <Page.DataContext>
+    <UserControl.DataContext>
         <vm:UsuariosViewModel/>
-    </Page.DataContext>
+    </UserControl.DataContext>
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -31,21 +30,22 @@
                     <ComboBoxItem Content="Administrador"/>
                 </ComboBox>
 
-                <Button Content="➕ Agregar Usuario" Command="{Binding AgregarUsuarioCommand}" Background="#A3BE8C" FontWeight="Bold" Padding="10"/>
+                <Button Content="Agregar Usuario" Command="{Binding AgregarUsuarioCommand}" Background="#A3BE8C" FontWeight="Bold" Padding="10"/>
             </StackPanel>
         </Border>
 
         <DataGrid Grid.Row="2" ItemsSource="{Binding ListaUsuarios}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Nombre de Usuario" Binding="{Binding Nombre}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nombre de Usuario" Binding="{Binding Nombre}" Width="12
+                                    0" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="100" IsReadOnly="True"/>
 
                 <DataGridTemplateColumn Header="Acciones" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="🗑️ Eliminar" 
-                                    Command="{Binding DataContext.EliminarUsuarioCommand, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            <Button Content="Eliminar" 
+                                    Command="{Binding DataContext.EliminarUsuarioCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                                     CommandParameter="{Binding}"
                                     Background="#BF616A" Foreground="White" Padding="5" Cursor="Hand"/>
                         </DataTemplate>
@@ -54,4 +54,4 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
-</Page>
+</UserControl>

@@ -20,26 +20,24 @@ namespace FothelCards.MVVM.View
     /// <summary>
     /// Lógica de interacción para WorkspacePage.xaml
     /// </summary>
-    public partial class WorkspacePage : Page
+    public partial class WorkspacePage : UserControl
     {
         public WorkspacePage()
         {
             InitializeComponent();
         }
+
         private void BtnBuscarImagen_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
             dialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
             if (dialog.ShowDialog() == true)
             {
-                string rutaImagen = dialog.FileName;
-
                 var viewModel = (WorkspaceViewModel)this.DataContext;
-                viewModel.NuevaRutaPortada = rutaImagen;
+                viewModel.NuevaRutaPortada = dialog.FileName;
             }
         }
 
-        // Lógica para Arrastrar y Soltar archivos (Drag & Drop)
         private void Grid_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
