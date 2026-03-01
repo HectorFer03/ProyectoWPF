@@ -22,6 +22,7 @@ namespace FothelCards.MVVM.ViewModel
         public ICommand MostrarUsuariosCommand { get; }
         public ICommand MostrarInfoCommand { get; }
         public ICommand SalirCommand { get; }
+        public ICommand MostrarConfiguracionCommand { get; }
 
         public DashboardViewModel()
         {
@@ -34,6 +35,7 @@ namespace FothelCards.MVVM.ViewModel
 
             MostrarInfoCommand = new RelayCommand(MostrarInfo);
             SalirCommand = new RelayCommand(CerrarSesion);
+            MostrarConfiguracionCommand = new RelayCommand(o => VistaActual = new ConfiguracionViewModel());
         }
 
         private void MostrarInfo(object parameter)

@@ -16,6 +16,10 @@
         <DataTemplate DataType="{x:Type vm:UsuariosViewModel}">
             <view:UsuariosPage />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ConfiguracionViewModel}">
+            <view:ConfiguracionPage />
+        </DataTemplate>
     </Page.Resources>
 
     <Grid Background="#ECEFF4">
@@ -46,7 +50,7 @@
                 <Button Content="Iniciar Proceso (Stock)" Command="{Binding MostrarStockCommand}" Margin="10,5" Padding="10"/>
                 <Button Content="Configuración (Usuarios)" Command="{Binding MostrarUsuariosCommand}" Margin="10,5" Padding="10"/>
                 <Button Content="Acerca de / Info" Command="{Binding MostrarInfoCommand}" Margin="10,5" Padding="10"/>
-
+                <Button Content="Ajustes (Configuración)" Command="{Binding MostrarConfiguracionCommand}" Margin="10,5" Padding="10"/>
                 <Button Content="Salir" Command="{Binding SalirCommand}" Margin="10,50,10,10" Padding="10" Background="#BF616A" Foreground="White"/>
             </StackPanel>
 
