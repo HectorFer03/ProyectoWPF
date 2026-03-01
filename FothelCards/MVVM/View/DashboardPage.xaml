@@ -28,7 +28,7 @@
         <Grid Grid.Row="0" Background="#2E3440">
             <TextBlock Text="FOTHELCARDS - PANEL DE CONTROL" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"/>
 
-            <MediaElement x:Name="BackgroundAudio" Source="pack://siteoforigin:,,,/audio_fondo.mp3" LoadedBehavior="Play" UnloadedBehavior="Stop" Volume="0.5" Visibility="Collapsed"/>
+            <MediaElement x:Name="BackgroundAudio" Volume="0.5" Visibility="Collapsed"/>
 
             <view:AudioWidget HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" ToggleAudio="AudioWidget_ToggleAudio"/>
         </Grid>

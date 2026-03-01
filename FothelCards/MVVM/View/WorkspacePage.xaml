@@ -3,9 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:vm="clr-namespace:FothelCards.MVVM.ViewModel">
 
-    <UserControl.DataContext>
-        <vm:WorkspaceViewModel/>
-    </UserControl.DataContext>
+   
 
     <UserControl.Resources>
         <Style x:Key="PanelContainer" TargetType="Border">
@@ -108,7 +106,7 @@
                     </ComboBox>
 
                     <Button Content="Buscar Portada (o Arrastrar)" Click="BtnBuscarImagen_Click" Margin="0,5" Padding="5"/>
-                    <Image Source="{Binding NuevaRutaPortada}" Height="80" Margin="0,5"/>
+                    <Image Source="{Binding NuevaRutaPortada}" Height="0" Margin="0,5"/>
 
                     <Button Content="Guardar Coleccionable" Command="{Binding AgregarProductoCommand}" Background="#A3BE8C" Foreground="White" Padding="10" FontWeight="Bold"/>
                 </StackPanel>

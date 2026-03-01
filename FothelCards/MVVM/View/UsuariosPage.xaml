@@ -3,9 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:vm="clr-namespace:FothelCards.MVVM.ViewModel">
 
-    <UserControl.DataContext>
-        <vm:UsuariosViewModel/>
-    </UserControl.DataContext>
+    
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
