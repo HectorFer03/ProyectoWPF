@@ -1,11 +1,13 @@
-﻿using System;
+﻿using FothelCards.MVVM.Data;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Windows;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Threading.Tasks;
 
 namespace FothelCards.MVVM.ViewModel
 {
@@ -30,16 +32,30 @@ namespace FothelCards.MVVM.ViewModel
             BypassCommand = new RelayCommand(HacerBypass);
         }
 
-        private void EjecutarLogin(object parameter)
+        private async void EjecutarLogin(object parameter)
         {
-            // Login básico y normal
-            if (Username == "admin" && Password == "1234")
+            Mensaje = "Conectando a la base de datos...";
+            try
             {
-                NavegarAlDashboard();
+                AccesoDatos db = new AccesoDatos();
+                DataTable dt = await db.EjecutarProcedimientoAsync(
+                    "sp_Login",
+                    new List<string> { "p_usuario", "p_password" },
+                    new List<object> { Username, Password }
+                );
+
+                if (dt.Rows.Count == 1)
+                {
+                    NavegarAlDashboard();
+                }
+                else
+                {
+                    Mensaje = "Usuario o contraseña incorrectos.";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Mensaje = "Usuario o contraseña incorrectos.";
+                Mensaje = "Error de conexión: " + ex.Message;
             }
         }
 

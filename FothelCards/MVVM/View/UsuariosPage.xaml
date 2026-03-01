@@ -1,0 +1,57 @@
+﻿<Page x:Class="FothelCards.MVVM.View.UsuariosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:vm="clr-namespace:FothelCards.MVVM.ViewModel"
+      Title="UsuariosPage">
+
+    <Page.DataContext>
+        <vm:UsuariosViewModel/>
+    </Page.DataContext>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Gestión de Empleados" FontSize="24" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <Border Grid.Row="1" Background="#D8DEE9" Padding="15" Margin="0,0,0,20" CornerRadius="5">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Usuario:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
+                <TextBox Text="{Binding NuevoUsername}" Width="120" Margin="0,0,15,0" Padding="5"/>
+
+                <TextBlock Text="Contraseña:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
+                <TextBox Text="{Binding NuevoPassword}" Width="120" Margin="0,0,15,0" Padding="5"/>
+
+                <TextBlock Text="Rol:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
+                <ComboBox SelectedValue="{Binding NuevoRol}" Width="120" Margin="0,0,15,0" Padding="5" SelectedValuePath="Content">
+                    <ComboBoxItem Content="Empleado" IsSelected="True"/>
+                    <ComboBoxItem Content="Administrador"/>
+                </ComboBox>
+
+                <Button Content="➕ Agregar Usuario" Command="{Binding AgregarUsuarioCommand}" Background="#A3BE8C" FontWeight="Bold" Padding="10"/>
+            </StackPanel>
+        </Border>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding ListaUsuarios}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nombre de Usuario" Binding="{Binding Nombre}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="150" IsReadOnly="True"/>
+
+                <DataGridTemplateColumn Header="Acciones" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="🗑️ Eliminar" 
+                                    Command="{Binding DataContext.EliminarUsuarioCommand, RelativeSource={RelativeSource AncestorType=Page}}" 
+                                    CommandParameter="{Binding}"
+                                    Background="#BF616A" Foreground="White" Padding="5" Cursor="Hand"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

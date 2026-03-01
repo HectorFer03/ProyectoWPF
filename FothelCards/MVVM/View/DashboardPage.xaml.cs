@@ -23,6 +23,24 @@ namespace FothelCards.MVVM.View
         public DashboardPage()
         {
             InitializeComponent();
+            ContenidoFrame.Navigate(new WorkspacePage());
+        }
+
+        private void BtnStock_Click(object sender, RoutedEventArgs e)
+        {
+            ContenidoFrame.Navigate(new WorkspacePage());
+        }
+
+        private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            ContenidoFrame.Navigate(new UsuariosPage());
+        }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            // Para cerrar sesión, accedemos al Frame principal del MainWindow y volvemos al Login
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.MainFrame.Navigate(new LoginPage());
         }
     }
 }
