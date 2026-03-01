@@ -16,26 +16,24 @@ using System.Windows.Shapes;
 namespace FothelCards.MVVM.View
 {
     /// <summary>
-    /// Lógica de interacción para DashboardPage.xaml
+    /// Lógica de interacción para AudioWidget.xaml
     /// </summary>
-    public partial class DashboardPage : Page
+    public partial class AudioWidget : UserControl
     {
-        public DashboardPage()
+        public event RoutedEventHandler ToggleAudio;
+
+        private bool _isMuted = false;
+        public AudioWidget()
         {
             InitializeComponent();
-            
         }
-
-        private void AudioWidget_ToggleAudio(object sender, System.Windows.RoutedEventArgs e)
+        private void BtnMute_Click(object sender, RoutedEventArgs e)
         {
-            if (BackgroundAudio.IsMuted)
-            {
-                BackgroundAudio.IsMuted = false;
-            }
-            else
-            {
-                BackgroundAudio.IsMuted = true;
-            }
+            _isMuted = !_isMuted;
+            BtnMute.Content = _isMuted ? "Activar Audio" : "Silenciar Audio";
+
+            // Disparar el evento hacia el Dashboard
+            ToggleAudio?.Invoke(this, new RoutedEventArgs());
         }
     }
 }

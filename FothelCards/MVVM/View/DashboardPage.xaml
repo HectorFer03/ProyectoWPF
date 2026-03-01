@@ -1,24 +1,60 @@
 ﻿<Page x:Class="FothelCards.MVVM.View.DashboardPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:vm="clr-namespace:FothelCards.MVVM.ViewModel"
+      xmlns:view="clr-namespace:FothelCards.MVVM.View"
       Title="DashboardPage">
 
+    <Page.DataContext>
+        <vm:DashboardViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <DataTemplate DataType="{x:Type vm:WorkspaceViewModel}">
+            <view:WorkspacePage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UsuariosViewModel}">
+            <view:UsuariosPage />
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid Background="#ECEFF4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" Background="#3B4252">
-            <TextBlock Text="MENÚ ADMIN" Foreground="White" FontSize="20" FontWeight="Bold" Margin="20"/>
-            <Separator Margin="10,0,10,20"/>
+        <Grid Grid.Row="0" Background="#2E3440">
+            <TextBlock Text="FOTHELCARDS - PANEL DE CONTROL" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0"/>
 
-            <Button Content="Gestión de Stock" Click="BtnStock_Click" Margin="10,5" Padding="10" Background="#4C566A" Foreground="White"/>
-            <Button Content="Altas/Bajas Usuarios" Click="BtnUsuarios_Click" Margin="10,5" Padding="10" Background="#4C566A" Foreground="White"/>
+            <MediaElement x:Name="BackgroundAudio" Source="pack://siteoforigin:,,,/audio_fondo.mp3" LoadedBehavior="Play" UnloadedBehavior="Stop" Volume="0.5" Visibility="Collapsed"/>
 
-            <Button Content="Cerrar Sesión" Click="BtnSalir_Click" Margin="10,50,10,10" Padding="10" Background="#BF616A" Foreground="White"/>
-        </StackPanel>
+            <view:AudioWidget HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" ToggleAudio="AudioWidget_ToggleAudio"/>
+        </Grid>
 
-        <Frame x:Name="ContenidoFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Margin="10"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Background="#3B4252">
+                <TextBlock Text="MENÚ PRINCIPAL" Foreground="White" FontSize="16" FontWeight="Bold" Margin="20,20,20,10" HorizontalAlignment="Center"/>
+                <Separator Margin="10,0,10,20" Background="#4C566A"/>
+
+                <Button Content="Iniciar Proceso (Stock)" Command="{Binding MostrarStockCommand}" Margin="10,5" Padding="10"/>
+                <Button Content="Configuración (Usuarios)" Command="{Binding MostrarUsuariosCommand}" Margin="10,5" Padding="10"/>
+                <Button Content="Acerca de / Info" Command="{Binding MostrarInfoCommand}" Margin="10,5" Padding="10"/>
+
+                <Button Content="Salir" Command="{Binding SalirCommand}" Margin="10,50,10,10" Padding="10" Background="#BF616A" Foreground="White"/>
+            </StackPanel>
+
+            <ContentControl Grid.Column="1" Content="{Binding VistaActual}" Margin="10"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Background="#D8DEE9">
+            <TextBlock Text="© 2026 FothelCards - Sistema de Gestión" Foreground="#4C566A" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12"/>
+        </Grid>
     </Grid>
 </Page>
