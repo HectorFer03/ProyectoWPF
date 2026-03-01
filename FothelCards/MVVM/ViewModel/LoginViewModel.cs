@@ -1,4 +1,4 @@
-﻿using using FothelCards.MVVM.Data;
+﻿using FothelCards.MVVM.Data;
 using System;
 using System.Security.Cryptography;
 using System.Collections.Generic;
