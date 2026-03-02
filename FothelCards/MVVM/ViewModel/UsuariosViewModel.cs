@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
-using System.Security.Cryptography;
+using System.Security.Cryptography; // Importante para encriptar
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows; // Importante para la alerta de duplicados
 using System.Windows.Input;
 
 namespace FothelCards.MVVM.ViewModel
@@ -33,7 +34,7 @@ namespace FothelCards.MVVM.ViewModel
         {
             ListaUsuarios = new ObservableCollection<UsuarioModel>();
             EliminarUsuarioCommand = new RelayCommand(EliminarUsuario);
-            AgregarUsuarioCommand = new RelayCommand(AgregarUsuario); 
+            AgregarUsuarioCommand = new RelayCommand(AgregarUsuario); // Asignar el comando
 
             CargarUsuarios();
         }
@@ -55,6 +56,7 @@ namespace FothelCards.MVVM.ViewModel
             }
         }
 
+        // 1. FUNCIÓN PARA ENCRIPTAR LA CONTRASEÑA CORRECTAMENTE
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -68,34 +70,31 @@ namespace FothelCards.MVVM.ViewModel
 
         private async void AgregarUsuario(object parameter)
         {
-            // 1. Validar que los campos no estén vacíos
+            // Validar que no estén vacíos
             if (string.IsNullOrWhiteSpace(NuevoUsername) || string.IsNullOrWhiteSpace(NuevoPassword)) return;
 
-            // 2. VALIDACIÓN DE DUPLICADOS
-            // Comprueba si ya existe un usuario con ese nombre (ignorando mayúsculas/minúsculas)
+            // 2. VALIDACIÓN: EVITAR USUARIOS DUPLICADOS
             bool existeDuplicado = ListaUsuarios.Any(u => u.Nombre.Equals(NuevoUsername, StringComparison.OrdinalIgnoreCase));
-
             if (existeDuplicado)
             {
-                // Mostramos una alerta y detenemos la ejecución
-                System.Windows.MessageBox.Show($"El usuario '{NuevoUsername}' ya existe en el sistema. Por favor, elige otro nombre.",
-                                               "Usuario Duplicado",
-                                               System.Windows.MessageBoxButton.OK,
-                                               System.Windows.MessageBoxImage.Warning);
-                return;
+                MessageBox.Show($"El usuario '{NuevoUsername}' ya existe en el sistema. Por favor, elige otro nombre.",
+                                "Usuario Duplicado",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                return; // Detiene el proceso, no guarda en base de datos
             }
 
-            // 3. ENCRIPTAMOS LA CONTRASEÑA ANTES DE GUARDARLA
+            // 3. ENCRIPTAMOS LA CONTRASEÑA ANTES DE MANDARLA A LA BD
             string passwordHash = HashPassword(NuevoPassword);
 
             AccesoDatos db = new AccesoDatos();
             await db.EjecutarProcedimientoNonQueryAsync(
                 "sp_InsertarUsuario",
                 new List<string> { "p_usuario", "p_password", "p_rol" },
-                new List<object> { NuevoUsername, passwordHash, NuevoRol }
+                new List<object> { NuevoUsername, passwordHash, NuevoRol } // ¡Aquí se guarda el passwordHash!
             );
 
-            // 4. Limpiar formulario y recargar lista
+            // Limpiar formulario y recargar lista
             NuevoUsername = string.Empty;
             NuevoPassword = string.Empty;
             CargarUsuarios();
