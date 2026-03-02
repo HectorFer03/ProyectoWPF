@@ -1,0 +1,15 @@
+﻿<Window x:Class="FothelCards.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FothelCards" Height="768" Width="1024"
+        WindowStartupLocation="CenterScreen">
+        <!-- Centra la ventana en la pantalla al abrir la aplicación -->
+        
+    
+    <!-- Contenedor principal de la ventana -->
+    <Grid>
+        <!-- Frame que actúa como un lienzo en blanco para cargar otras páginas (View) de la aplicación. -->
+        <!-- NavigationUIVisibility="Hidden" oculta la barra de navegación superior (botones atrás/adelante) que trae por defecto el Frame -->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

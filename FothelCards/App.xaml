@@ -1,0 +1,50 @@
+﻿<Application x:Class="FothelCards.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <!-- Punto de entrada principal: Establece MainWindow como la primera ventana que se abre al arrancar -->
+
+
+
+    <!-- Diccionario de Recursos de la Aplicación -->
+    <!-- Aquí se definen los estilos visuales globales que se reutilizan en todo el programa -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Estilo global para los botones con identificador 'BotonEstiloGlobal' -->
+            <Style x:Key="BotonEstiloGlobal" TargetType="Button">
+                <!-- Color de fondo por defecto del botón (gris oscuro/azulado) -->
+                <Setter Property="Background" Value="#4C566A"/>
+                <!-- Color del texto (blanco) -->
+                <Setter Property="Foreground" Value="White"/>
+                <!-- Espaciado interior entre el texto y el borde -->
+                <Setter Property="Padding" Value="10"/>
+                <!-- Cambia el cursor a una mano cuando se pasa sobre el botón -->
+                <Setter Property="Cursor" Value="Hand"/>
+                <!-- Redefinición completa de la estructura visual del botón usando una plantilla -->
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Borde del botón con esquinas redondeadas -->
+                            <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5">
+                                <!-- Contenedor que muestra el contenido (texto/icono) del botón centrado -->
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <!-- Desencadenadores (Triggers) para cambiar el color según la interacción -->
+                            <ControlTemplate.Triggers>
+                                <!-- Efecto Hover: Cuando el ratón pasa por encima, cambia el fondo de 'border' a un azul más claro -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#5E81AC"/>
+                                </Trigger>
+                                <!-- Efecto Clic: Cuando se presiona el botón, cambia a un azul aún más claro -->
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#81A1C1"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
