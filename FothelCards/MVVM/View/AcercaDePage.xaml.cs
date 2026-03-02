@@ -18,7 +18,7 @@ namespace FothelCards.MVVM.View
     /// <summary>
     /// Lógica de interacción para AcercaDePage.xaml
     /// </summary>
-    public partial class AcercaDePage : Page
+    public partial class AcercaDePage : UserControl
     {
         public AcercaDePage()
         {

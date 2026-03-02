@@ -12,13 +12,16 @@
     <Page.Resources>
         <DataTemplate DataType="{x:Type vm:WorkspaceViewModel}">
             <view:WorkspacePage />
+            
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:UsuariosViewModel}">
             <view:UsuariosPage />
+            
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:BaseViewModel}">
             <view:AcercaDePage />
         </DataTemplate>
+        
         <DataTemplate DataType="{x:Type vm:ConfiguracionViewModel}">
             <view:ConfiguracionPage />
         </DataTemplate>
