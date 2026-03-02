@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="FothelCards.MVVM.View.AcercaDePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#ECEFF4">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <TextBlock Text="Fothel Cards" FontSize="28" FontWeight="Bold" 
+                       HorizontalAlignment="Center" Foreground="#2E3440" Margin="0,0,0,40"/>
+
+            <Canvas Height="100" Background="Transparent" x:Name="CanvasAnimacion">
+                <TextBlock x:Name="TxtNombre" 
+                           Text="Héctor Fernández" 
+                           FontSize="40" 
+                           FontWeight="ExtraBold" 
+                           Foreground="#5E81AC">
+                    <TextBlock.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation 
+                                        Storyboard.TargetName="TxtNombre"
+                                        Storyboard.TargetProperty="(Canvas.Left)"
+                                        From="-300" To="900" 
+                                        Duration="0:0:8" 
+                                        RepeatBehavior="Forever" 
+                                        AutoReverse="True"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </TextBlock.Triggers>
+                </TextBlock>
+            </Canvas>
+
+            <TextBlock Text="Proyecto: FothelCards v1.0" HorizontalAlignment="Center" Margin="0,50,0,10"/>
+
+            <Button Content="Cerrar Info" 
+                    Command="{Binding DataContext.MostrarStockCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                    Background="#BF616A" Foreground="White" 
+                    Padding="20,10" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

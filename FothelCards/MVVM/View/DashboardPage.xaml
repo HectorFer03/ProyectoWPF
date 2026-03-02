@@ -16,11 +16,15 @@
         <DataTemplate DataType="{x:Type vm:UsuariosViewModel}">
             <view:UsuariosPage />
         </DataTemplate>
-
+        <DataTemplate DataType="{x:Type vm:BaseViewModel}">
+            <view:AcercaDePage />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:ConfiguracionViewModel}">
             <view:ConfiguracionPage />
         </DataTemplate>
     </Page.Resources>
+    
+
 
     <Grid Background="#ECEFF4">
         <Grid.RowDefinitions>

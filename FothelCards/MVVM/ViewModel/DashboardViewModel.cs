@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FothelCards.MVVM.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,9 +39,11 @@ namespace FothelCards.MVVM.ViewModel
             MostrarConfiguracionCommand = new RelayCommand(o => VistaActual = new ConfiguracionViewModel());
         }
 
+        // Cambie el método MostrarInfo en DashboardViewModel.cs
         private void MostrarInfo(object parameter)
         {
-            MessageBox.Show("FothelCards v1.0\nDesarrollado para la evaluación de Interfaces.", "Acerca de", MessageBoxButton.OK, MessageBoxImage.Information);
+            // En lugar de un MessageBox, ahora cambiamos la vista actual
+            VistaActual = new AcercaDePage();
         }
 
         private void CerrarSesion(object parameter)
